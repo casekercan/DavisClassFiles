@@ -1,0 +1,15 @@
+{
+  "name": "11-popQuiz",
+  "version": "1.0.0",
+  "description": "## Using the `terminal` or your favorite MySQL GUI 1. Connect to MySQL server  2. Create a new Database 3. Create a new table with a primary key that auto-increments, and a text field 4. Insert 3 Rows into your new table",
+  "main": "popquiz.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.16.0"
+  }
+}

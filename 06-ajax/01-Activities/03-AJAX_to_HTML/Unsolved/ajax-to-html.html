@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Favorite Movies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h2>Basic Table</h2>
+    <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Movie Name</th>
+          <th scope="col">Year</th>
+          <th scope="col">Actors</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Insert movie rows here -->
+      </tbody>
+    </table>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+
+    function addToTable(data) {
+      var tRow = $("<tr>");
+      var title = $("<td>").text(data.Title);
+      var year = $("<td>").text(data.Year);
+      var actors = $("<td>").text(data.Actors);
+      tRow.append(title, year, actors)
+      $("tbody").append(tRow);
+    }
+
+    function getMovie(movie) {
+      var queryURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=3ff98bc8";
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function (response) {
+        addToTable(response);
+      });
+    }
+
+    getMovie("The little mermaid");
+    getMovie("Parent trap");
+    getMovie("Frozen");
+
+
+  </script>
+</body>
+
+</html>

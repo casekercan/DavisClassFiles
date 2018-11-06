@@ -1,0 +1,50 @@
+// Dependencies
+// ===========================================================
+var express = require("express");
+
+var app = express();
+var PORT = 3000;
+
+// Data
+var characters = [{
+  routeName: "yoda",
+  name: "Yoda",
+  role: "Jedi Master",
+  age: 900,
+  forcePoints: 2000
+}, {
+  routeName: "darthmaul",
+  name: "Darth Maul",
+  role: "Sith Lord",
+  age: 200,
+  forcePoints: 1200
+}, {
+  routeName: "obiwankenobi",
+  name: "Obi Wan Kenobi",
+  role: "Jedi Knight",
+  age: 60,
+  forcePoints: 1350
+}];
+
+// Routes
+// ===========================================================
+app.get("/", function (req, res) {
+  res.send("Welcome to the Star Wars Page!");
+});
+
+app.get("/:character", function (req, res) {
+  //gets whole object...
+  var chosen = characters.filter(char => char.routeName === req.params.character);
+  //gets just the name of character...
+  // var chosen = req.params.character
+  // What does this log?
+  res.json(chosen);
+  res.end();
+});
+
+
+// Listener
+// ===========================================================
+app.listen(PORT, function () {
+  console.log("App listening on PORT " + PORT);
+});

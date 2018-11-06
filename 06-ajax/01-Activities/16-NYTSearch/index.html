@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        var searchBox = "moon";
+        var numberArticles = 5;
+        var yearS = 1999;
+        var yearE = 2011;
+
+
+
+        var queryURL = "https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key=6ee565f4349d4a22a50345e86b465272?q=" + searchBox + "&begin_date=" + yearS + "0101&end_date=" + yearE + "0101&page=" + numberArticles;
+
+        //ajax code
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+            //when clicked... 
+            .then(function (response) {
+                console.log(response);
+
+            });
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

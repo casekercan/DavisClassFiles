@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Click Button with Firebase!</title>
+
+  <!-- -->
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
+</head>
+
+<body>
+
+  <!-- -->
+  <h1>Ouch! You've clicked me
+    <span id="click-value"></span> times!</h1>
+
+  <!-- -->
+  <button id="click-button">Click Me!!!!</button>
+
+  <!-- -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- ================================================================================== -->
+
+  <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAMingkuWjz6H7t3mIEaSesO4cYR25lzNc",
+      authDomain: "coding-bootcamp-uc-davis.firebaseapp.com",
+      databaseURL: "https://coding-bootcamp-uc-davis.firebaseio.com",
+      projectId: "coding-bootcamp-uc-davis",
+      storageBucket: "coding-bootcamp-uc-davis.appspot.com",
+      messagingSenderId: "203976296596"
+    };
+    firebase.initializeApp(config);
+
+    // VARIABLES
+    // naming variables to call back later
+
+    var database = firebase.database();
+    var clickCounter = 0;
+
+    // FUNCTIONS + EVENTS
+    // when you click button it adds 1 to counter... then references the click count in database and sets it to click Counter #.
+
+    $("#click-button").on("click", function () {
+      clickCounter++;
+      database.ref().set({
+        clickCount: clickCounter
+      });
+    });
+
+    // MAIN PROCESS + INITIAL CODE
+    // 
+
+    database.ref().on("value", function (snapshot) {
+      //console.log the value of snapshot
+      console.log(snapshot.val());
+      //change the html associated with the number
+      $("#click-value").text(snapshot.val().clickCount);
+      //then we update the click count variabel with data from the database
+      clickCounter = snapshot.val().clickCount;
+
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+
+  </script>
+
+</body>
+
+</html>
